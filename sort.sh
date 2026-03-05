@@ -59,8 +59,7 @@ function sort() {
 }
 
 
-#adj=("3" "0 2" "3" "")
-# represents a graph of nodes where each element is a node, and values in each element are what node(s) they point to (if any)
+# The "adj" array represents a graph of nodes where each element is a node, and values in each element are what node(s) they point to (if any)
 #   for example:
 #   
 #   0 -> 1 -> 2 -> 3
