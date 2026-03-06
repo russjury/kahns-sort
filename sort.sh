@@ -55,7 +55,14 @@ function sort() {
       i=$((i+1))
     done
   done
-  echo "res: ${res[@]}"
+
+  # detect cycle and throw error
+  if [ ${#res[@]} != ${#adj[@]} ]; then
+    return 1
+  else
+    echo "res: ${res[@]}"
+  fi
+  return 0
 }
 
 
@@ -68,6 +75,15 @@ function sort() {
 #   4 ->  5
 # 
 # would be written as: (node 0 points to node 1, node 1 points to node 2, node 2 points to node 3, node 3 points to nothing, node 4 points to node 5, node 5 points to nodes 1 and 2)
-adj=("1" "2" "3" "" "5" "1 2")
+#adj=("1" "2" "3" "" "5" "1 2")
+
+# other test cases
+#adj=("1" "2" "3 5" "" "5" "1")    # cyclical
+#adj=("1" "0" )                    # cyclical
+#adj=("0" )                        # cyclical
+#adj=("1" "2" "" "4" "")           # ok, but disjointed
+adj=("1" "2" "" "1 4" "2")         # good
 
 sort "${adj[@]}"
+ERR=$?
+[[ $ERR -eq 0 ]] || echo "cyclical graph detected"
