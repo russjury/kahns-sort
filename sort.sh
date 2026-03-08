@@ -5,7 +5,9 @@
 # adopted from https://www.geeksforgeeks.org/dsa/topological-sorting-indegree-based-solution/
 
 function sort() {
+
   adj=("$@")
+
   n=${#adj[@]}
   indegree=()
     i=0
@@ -82,7 +84,8 @@ function sort() {
 #adj=("1" "0" )                    # cyclical
 #adj=("0" )                        # cyclical
 #adj=("1" "2" "" "4" "")           # ok, but disjointed
-adj=("1" "2" "" "1 4" "2")         # good
+#adj=("1" "2" "" "1 4" "2")         # good
+adj=("" "" "0" "0" "0 1")
 
 sort "${adj[@]}"
 ERR=$?
